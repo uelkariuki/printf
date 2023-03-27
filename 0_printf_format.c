@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
-  *_printf- function that produces output according to a format.
+  *conversion_specifier-  function that produces output according to a format.
   *@format: is a character string. The format string is composed of
   *         zero or more directives
   *Return:  the number of characters printed (excluding the null byte used
@@ -9,7 +9,7 @@
   *
   */
 
-int _printf(const char *format, ...)
+int conversion_specifier(const char *format, ...)
 {
 	int count;
 	va_list args;

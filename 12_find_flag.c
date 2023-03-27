@@ -1,34 +1,60 @@
 #include "main.h"
+#include <stdarg.h>
+#include <stdio.h>
 
 /**
- * find_flag - Turns on flags if _printf finds a
- * flag modifier in the format string.
+ *my_print- A printf-style function that supports the - flag for left justification
+ * of non-custom conversion specifiers.
  *
- * @s: character that holds the flag specifier.
- * @f: pointer to the struct flags in which we turn the flags on.
- *
- * Return: 1 if flag has been turned on and 0 if otherwise.
- *
+ * @format The format string.
+ *Return: The number of characters printed.
  */
+int my_printf(const char* format, ...) {
+  va_list args;
+  char *arg;
+  int left_justify;
+  int iarg;
+  int count = 0;
 
-int find_flag(char s, flag_t *f)
-{
-	int i = 0;
-
-	switch (s)
-	{
-		case '+':
-			f->plus = 1;
-			i = 1;
-			break;
-		case ' ':
-			f->space = 1;
-			i = 1;
-			break;
-		case '#':
-			f->hash = 1;
-			i = 1;
-			break;
-	}
-	return (i);
+  va_start(args, format);
+  while (*format) {
+    if (*format == '%') {
+      format++;
+      /*Check for the - flag*/
+      left_justify = 0;
+      if (*format == '-') {
+        left_justify = 1;
+        format++;
+      }
+      /*Parse the conversion specifier*/
+      if (*format == 'd') {
+        /*Handle the %d conversion specifier*/
+	      iarg = va_arg(args, int);
+        if (left_justify) {
+          count += printf("%d ", iarg);
+        } else {
+          count += printf(" %d", iarg);
+        }
+      } else if (*format == 's') {
+        /*Handle the %s conversion specifier*/
+	      arg = va_arg(args, char*);
+        if (left_justify) {
+          count += printf("%s ", arg);
+        } else {
+          count += printf(" %s", arg);
+        }
+      } else {
+        /* Unsupported conversion specifier, print a question mark*/
+        count += printf("?");
+      }
+      format++;
+    } else {
+      /*Normal character, just output it*;*/
+      count += printf("%c", *format);
+      format++;
+    }
+  }
+  va_end(args);
+  return count;
 }
+

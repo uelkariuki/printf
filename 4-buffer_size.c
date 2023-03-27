@@ -9,7 +9,7 @@
   *Return: The total number of characters written to stdout
   */
 
-int my_printf(const char* format, ...) 
+int buffer_size(const char* format, ...) 
 {
 	int chars_written = 0; /* initialize the number of characters written to zero*/
 	char buffer[BUFFER_SIZE]; /*create a buffer of 1024 chars*/
