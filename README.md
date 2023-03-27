@@ -13,3 +13,11 @@ r : prints the reversed string
 
 R: prints the rot13'ed string
 
+
+for reference of prototypes, the delete!
+'s' , int conversion_specifier(const char *format, ...)
+'d' int conversion_specifier(const char *format, ...)
+'b' void print_with_custom_specifiers(const char *format, ...)
+'o' void print_number(unsigned int num, char spec)
+'X' void print_integer_with_length_modifier(int val, char length, char specifier)
+'r'  int reverse_string(const char* format, ...)
