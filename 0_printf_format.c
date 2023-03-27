@@ -1,6 +1,4 @@
-#include <stdarg.h>
 #include "main.h"
-#include <stdio.h>
 
 /**
   *_printf- function that produces output according to a format.
@@ -33,6 +31,10 @@ int _printf(const char *format, ...)
 					break;
 				case '%':
 					count = count + putchar('%');
+					break;
+				case 'd':
+				case 'i':
+					count = count + printf("%d", va_arg(args, int));
 					break;
 				default:
 					break;
