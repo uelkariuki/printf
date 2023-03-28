@@ -55,8 +55,8 @@ You don’t have to handle the length modifiers
 
 8. Handle the following length modifiers for non-custom conversion specifiers:
 
-l
-h
+	l
+	h
 Conversion specifiers to handle: d, i, u, o, x, X
 
 9. Handle the field width for non-custom conversion specifiers.
