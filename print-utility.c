@@ -1,10 +1,11 @@
 #include "main.h"
 
+
 /**
- *print - function to print char.
- *@str: string.
+ * print - print char.
+ * @str: string.
  *
- *Return: string length.
+ * Return: string length.
  */
 
 int print(char *str)

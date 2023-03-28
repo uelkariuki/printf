@@ -13,7 +13,7 @@ int print_binary(va_list list)
 
 	p_buff = itoa(va_arg(list, unsigned int), 2);
 
-	size = print(p_buff);
+	size =  print(p_buff);
 
 	return (size);
 }
