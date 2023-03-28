@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- *handler- Function that controls the format(Format controller) 
+ *handler- Function that controls the format(Format controller)
  *@str: String format
  *@list: List of arguments
  *
