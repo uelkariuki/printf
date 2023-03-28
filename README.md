@@ -49,9 +49,9 @@ You don’t have to handle the length modifiers
 
 7. Handle the following flag characters for non-custom conversion specifiers:
 
-+
-space
-#
+	+
+	space
+	#
 
 8. Handle the following length modifiers for non-custom conversion specifiers:
 
@@ -65,7 +65,7 @@ Conversion specifiers to handle: d, i, u, o, x, X
 12. Handle the - flag character for non-custom conversion specifiers.
 13. Handle the following custom conversion specifier:
 
-r : prints the reversed string
+	r : prints the reversed string
 14. Handle the following custom conversion specifier:
 
 R: prints the rot13'ed string
