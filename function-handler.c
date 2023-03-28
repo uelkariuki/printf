@@ -1,22 +1,22 @@
 #include "main.h"
 
 /**
- * handler - Format controller
- * @str: String format
- * @list: List of arguments
+ *handler- Function that controls the format(Format controller) 
+ *@str: String format
+ *@list: List of arguments
  *
- * Return: Total size of arguments with the total size of the base string
- **/
+ *Return: Total size of arguments with the total size of the base string
+ */
 int handler(const char *str, va_list list)
 {
-	int size, a, aux;
+	int size, i, aux;
 
 	size = 0;
-	for (a = 0; str[a] != 0; a++)
+	for (i = 0; str[i] != 0; i++)
 	{
-		if (str[a] == '%')
+		if (str[i] == '%')
 		{
-			aux = percent_handler(str, list, &a);
+			aux = percent_handler(str, list, &i);
 			if (aux == -1)
 				return (-1);
 
@@ -24,7 +24,7 @@ int handler(const char *str, va_list list)
 			continue;
 		}
 
-		_putchar(str[a]);
+		putchar(str[i]);
 		size = size + 1;
 	}
 
@@ -33,18 +33,18 @@ int handler(const char *str, va_list list)
 }
 
 /**
- * percent_handler - Controller for percent format
- * @str: String format
- * @list: List of arguments
- * @i: Iterator
+ *percent_handler - function that is the controller for percent format
+ *@str: String format
+ *@list: List of arguments
+ *@i: Iterator
  *
- * Return: Size of the numbers of elements printed
+ *Return: Size of the numbers of elements printed
  **/
 int percent_handler(const char *str, va_list list, int *i)
 {
 	int size, j, number_formats;
 	format formats[] = {
-		{'s',}, {'c', print_char},
+		{'s', print_string}, {'c', print_char},
 		{'d', print_integer}, {'i', print_integer},
 		{'b', print_binary}, {'u', print_unsigned},
 		{'o', print_octal}, {'x', print_hexadecimal_low},
@@ -59,7 +59,7 @@ int percent_handler(const char *str, va_list list, int *i)
 
 	if (str[*i] == '%')
 	{
-		_putchar('%');
+		putchar('%');
 		return (1);
 	}
 
@@ -74,7 +74,7 @@ int percent_handler(const char *str, va_list list, int *i)
 
 	}
 
-	_putchar('%'), _putchar(str[*i]);
+	putchar('%'), putchar(str[*i]);
 
 	return (2);
 }

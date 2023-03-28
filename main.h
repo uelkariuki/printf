@@ -1,27 +1,49 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
-#include <unistd.h>
+#include <stdio.h>
 #include <string.h>
-#include <ctype.h>
+
+/* utils.c */
+int print(char *);
+char *itoa(long int, int);
+
+/* printf.c */
+int _printf(const char *, ...);
+
+/* handler.c */
+int handler(const char *, va_list);
+int percent_handler(const char *, va_list, int *);
+
+/* printers */
+int print_string(va_list);
+int print_char(va_list);
+int print_integer(va_list);
+int print_binary(va_list);
+int print_rot(va_list);
+int print_unsigned(va_list);
+int print_octal(va_list);
+int print_hexadecimal_low(va_list);
+int print_hexadecimal_upp(va_list);
+int print_pointer(va_list);
+int print_rev_string(va_list);
+int buffer(char);
 
 
-int _printf(const char *format, ...);
-void print_with_custom_specifiers(const char *format, ...);
-void print_number(unsigned int num, char spec);
-int my_printf(const char* format, ...);
-void print_string(char* str);
-void print_pointer_address(void* ptr);
-void print_float_with_flags(float val, int plus, int space, int hash, int precision);
-void print_integer_with_length_modifier(int val, char length, char specifier);
-int width_specifier(const char* format, ...);
-int find_precision(const char *format, int *i, va_list list);
-char *convert(unsigned long int num, int base, int lowercase);
-int my_printf(const char* format, ...);
-int reverse_string(const char* format, ...);
-int rot_13(const char* format, ...);
+/**
+ *struct _format - Typedef struct
+ *
+ *@type: Format
+ *@f: The function associated
+ */
+typedef struct _format
+{
+	char type;
+	int (*f)(va_list);
+} format;
+
 
 #endif /* main.h */
