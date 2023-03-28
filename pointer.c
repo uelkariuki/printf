@@ -36,12 +36,12 @@ int print_pointer(va_list list)
  */
 int _strcmp(char *s1, char *s2)
 {
-	int a;
+	int i;
 
-	for (a = 0; s1[a] != '\0'; a++)
+	for (i = 0; s1[i] != '\0'; i++)
 	{
-		if (s1[a] != s2[a])
-			return (s1[a] - s2[a]);
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 	}
 
 	return (0);

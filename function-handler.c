@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- *handler- Function that controls the format(Format controller)
- *@str: String format
- *@list: List of arguments
+ * handler - Format controller
+ * @str: String format
+ * @list: List of arguments
  *
- *Return: Total size of arguments with the total size of the base string
- */
+ * Return: Total size of arguments with the total size of the base string
+ **/
 int handler(const char *str, va_list list)
 {
 	int size, i, aux;
@@ -24,7 +24,7 @@ int handler(const char *str, va_list list)
 			continue;
 		}
 
-		putchar(str[i]);
+		_putchar(str[i]);
 		size = size + 1;
 	}
 
@@ -33,12 +33,12 @@ int handler(const char *str, va_list list)
 }
 
 /**
- *percent_handler - function that is the controller for percent format
- *@str: String format
- *@list: List of arguments
- *@i: Iterator
+ * percent_handler - Controller for percent format
+ * @str: String format
+ * @list: List of arguments
+ * @i: Iterator
  *
- *Return: Size of the numbers of elements printed
+ * Return: Size of the numbers of elements printed
  **/
 int percent_handler(const char *str, va_list list, int *i)
 {
@@ -59,7 +59,7 @@ int percent_handler(const char *str, va_list list, int *i)
 
 	if (str[*i] == '%')
 	{
-		putchar('%');
+		_putchar('%');
 		return (1);
 	}
 
@@ -74,7 +74,7 @@ int percent_handler(const char *str, va_list list, int *i)
 
 	}
 
-	putchar('%'), putchar(str[*i]);
+	_putchar('%'), _putchar(str[*i]);
 
 	return (2);
 }

@@ -1,22 +1,22 @@
 #include "main.h"
 
 /**
- *print_rev_string - function to print a string in reverse
- *@list: List of arguments
+ * print_rev_string - Print a string in reverse
+ * @list: List of arguments
  *
- *Return: Length of the string
- */
+ * Return: Length of the string
+ **/
 int  print_rev_string(va_list list)
 {
-	int a, size;
+	int i, size;
 	const char *str;
 
 	str = va_arg(list, const char *);
 
-	size = strlen(str);
+	size = _strlen(str);
 
-	for (a = size - 1; a >= 0; a--)
-		putchar(str[a]);
+	for (i = size - 1; i >= 0; i--)
+		_putchar(str[i]);
 
 	return (size);
 }

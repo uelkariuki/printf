@@ -9,11 +9,11 @@
 
 int print_string(va_list list)
 {
-	char *str;
+	char *p;
 	int p_len;
 
-	str = va_arg(list, char*);
-	p_len = print((str != NULL) ? str : "(null)");
+	p = va_arg(list, char*);
+	p_len = print((p != NULL) ? p : "(null)");
 
 	return (p_len);
 }

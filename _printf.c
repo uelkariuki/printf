@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 	size = handler(format, args);
 
-	putchar(-1);
+	_putchar(-1);
 	va_end(args);
 
 	return (size);
