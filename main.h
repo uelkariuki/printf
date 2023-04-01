@@ -81,7 +81,8 @@ int hex_funct(va_list arguments, char map_to[], char buffer[],
 int non_printable(va_list arguments, char buffer[],
 		int flags, int width, int precision, int size);
 
-int pointer_func(va_list arguments, char buffer[], int flags, int width, int precision, int size);
+int pointer_func(va_list arguments, char buffer[], int flags, int width,
+		int precision, int size);
 
 /* Funciotns to handle other specifiers */
 int flags_funct(const char *format, int *x);
@@ -99,11 +100,11 @@ int rot13(va_list arguments, char buffer[],
 
 /* width handler */
 int handles_write_charac(char c, char buffer[],
-	int flags, int width, int precision, int size);
- int handle_write_number(int is_negative, int ind, char buffer[],
-		 int flags, int width, int precision, int size);
-int write_num_buff(int ind, char bff[], int flags, int width, int precision,
-		int length, char padd, char extra_c);
+		int flags, int width, int precision, int size);
+int handle_write_number(int is_negative, int ind, char buffer[],
+		int flags, int width, int precision, int size);
+int write_num_buff(int ind, char bff[], int flags, int width,
+		int precision, int length, char padd, char extra_c);
 
 int write_pointer_func(char buffer[], int ind, int length,
 	int width, int flags, char padd, char extra_c, int padd_start);
