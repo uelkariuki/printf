@@ -1,7 +1,7 @@
-# 0x11. C - printf 
+# 0x11. C - printf
 ## Tasks
 
-0. Write a function that produces output according to a format.  
+0. Write a function that produces output according to a format.
 
 Prototype: int _printf(const char *format, ...);
 Returns: the number of characters printed (excluding the null byte used to end output to strings)
@@ -69,4 +69,4 @@ Conversion specifiers to handle: d, i, u, o, x, X
 	r : prints the reversed string
 14. Handle the following custom conversion specifier:
 
-        R: prints the rot13'ed string 
+        R: prints the rot13'ed string
