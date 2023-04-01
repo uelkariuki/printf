@@ -22,7 +22,7 @@ You don’t have to handle the length modifiers
 
 2. Handle the following custom conversion specifiers:
 
-b: the unsigned int argument is converted to binary
+  b: the unsigned int argument is converted to binary
 
 3. Handle the following conversion specifiers:
 
