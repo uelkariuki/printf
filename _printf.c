@@ -60,19 +60,43 @@ int _printf(const char *format, ...) {
 		}
 		/* custom conversion specifier b */
 		else if  ((format[i] == '%' && format[i + 1] == 'b')) {
-			int num = va_arg(args, int);
-			int binaryRes = toBinary(num);
-			char *res = malloc(12);
+			unsigned int num = va_arg(args, int);
+			char *res = malloc(33);
 			if (res == NULL) {
 				return -1;
 			}
-			_itoa(binaryRes, res);
-			write(1, res, _strlen(res));
-			count += _strlen(res);
+			toBinary(num, res);
+			size_t length = _strlen(res);
+			ssize_t bytes_written = write(1, res, length);
+			/* In case of write error */
+			if (bytes_written == -1) {
+				free(res);
+				return -1;
+			}
+			count += bytes_written;
 			i++;
 			free(res);
 
 		}
+		/* conversion specifier u*/
+		else if  ((format[i] == '%' && format[i + 1] == 'u')) {
+			int n = va_arg(args, int);
+			unsigned int num = (unsigned int) n;
+			char *res = malloc(12);
+			if (!res) return -1;
+			_uitoa(num, res);
+			size_t length = _strlen(res);
+			ssize_t bytes_written = write(1, res,length);
+			/* In case of write error */
+			if (bytes_written == -1) {
+				free(res);
+				return -1;
+			}
+			count += bytes_written;
+			i++;
+			free(res);
+		}
+
 
 	}
 	va_end(args);
