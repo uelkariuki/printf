@@ -5,12 +5,14 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include <limits.h>
 
 int _printf(const char *format, ...);
 void reverse(char s[]);
 void _itoa(int num, char s[]);
 int _strlen(char *s);
-int toBinary(int k);
+void toBinary(unsigned int k, char *s);
+void _uitoa(unsigned int num, char s[]);
 
 #endif
 
