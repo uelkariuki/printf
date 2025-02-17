@@ -1,7 +1,8 @@
 #include "main.h"
 
 /**
- * Function that reverses a string in place
+ * reverse - Function that reverses a string in place
+ * @s: string to be reversed
 */
 
 void reverse(char s[]) {
