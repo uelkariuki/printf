@@ -8,6 +8,8 @@ specifier_t specifiers[] = {
 	{'i', print_int},
 	{'u', print_unsigned},
 	{'o', print_octal},
+	{'X', print_Hex},
+	{'x', print_hex},
 	{'\0', NULL}
 	};
 
