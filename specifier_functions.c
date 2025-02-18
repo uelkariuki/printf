@@ -15,6 +15,7 @@ int print_int(va_list args) {
 	/* handles conversion specifier d and i*/
 	int num;
 	char *res;
+	ssize_t bytes_written;
 
 	num = va_arg(args, int);
 	res = malloc(20);
@@ -22,8 +23,9 @@ int print_int(va_list args) {
 		return -1;
 		}
 	_itoa(num, res);
+	bytes_written = write(1, res, _strlen(res));
 	free(res);
-	return write(1, res, _strlen(res));
+	return (bytes_written == -1) ? -1 : bytes_written;
 }
 
 /**
