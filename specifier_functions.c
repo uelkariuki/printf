@@ -22,8 +22,8 @@ int print_int(va_list args) {
 		return -1;
 		}
 	_itoa(num, res);
-	return write(1, res, _strlen(res));
 	free(res);
+	return write(1, res, _strlen(res));
 }
 
 /**
