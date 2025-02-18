@@ -18,7 +18,8 @@ int print_binary(va_list args);
 int print_char(va_list args);
 int print_unsigned(va_list args);
 int print_octal(va_list args);
-
+int print_Hex(va_list args);
+int print_hex(va_list args);
 
 specifier_t *get_specifiers(void);
 
@@ -29,6 +30,8 @@ int _strlen(char *s);
 void to_binary(unsigned int k, char *s);
 void _uitoa(unsigned int num, char s[]);
 void to_octal(unsigned int k, char *s);
+void to_Hex(unsigned int n, char *s);
+void to_hex(unsigned int n, char *s);
 
 #endif
 
