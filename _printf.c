@@ -53,7 +53,7 @@ int _printf(const char *format, ...) {
 			buf.buffer[buf.index++] = format[i];
 			count++;
 		}
-		/*If buffer is full flush it (write it to stdout) and reset the buf_index*/
+		/*If buffer is full flush it (write it to stdout) and reset the buffer index */
 		if (buf.index >= BUFFER_SIZE) {
 			write(1, buf.buffer, buf.index);
 			buf.index = 0;
