@@ -11,22 +11,24 @@
  *
  * Return: The number of characters printed on success, -1 on failure
 */
-int print_octal(va_list args) {
+int print_octal(va_list args, buffer_t *buf) {
 	unsigned int n;
-	char *str;
-	ssize_t bytes_written;
+	char str[BUFFER_SIZE];
+	int i = 0;
 
 	n = va_arg(args, unsigned int);
-	str = malloc(33);
-	if (!str) return -1;
 	to_octal(n, str);
-	bytes_written = write(1, str, _strlen(str));
-	if (bytes_written == -1) {
-		free(str);
-		return -1;
+
+	while(str[i]) {
+		buf->buffer[buf->index++] = str[i++];
+		buf->count++;
+
+		if (buf->index == 1024) {
+			write(1, buf->buffer, buf->index);
+			buf->index = 0;
+		}
 	}
-	free(str);
-	return bytes_written;
+	return i;
 }
 
 
@@ -36,22 +38,24 @@ int print_octal(va_list args) {
  *
  * Return: The number of characters printed on success, -1 on failure
 */
-int print_Hex(va_list args) {
+int print_Hex(va_list args, buffer_t *buf) {
 	unsigned int n;
-	char *str;
-	ssize_t bytes_written;
+	char str[BUFFER_SIZE];
+	int i = 0;
 
 	n = va_arg(args, unsigned int);
-	str = malloc(12);
-	if (!str) return -1;
 	to_Hex(n, str);
-	bytes_written = write(1, str, _strlen(str));
-	if (!bytes_written) {
-		free(str);
-		return -1;
+
+	while (str[i]) {
+		buf->buffer[buf->index++] = str[i++];
+		buf->count++;
+
+		if (buf->index == 1024) {
+			write(1, buf->buffer, buf->index);
+			buf->index = 0;
+		}
 	}
-	free(str);
-	return bytes_written;
+	return i;
 }
 
 /**
@@ -60,20 +64,22 @@ int print_Hex(va_list args) {
  *
  * Return: The number of characters printed on success, -1 on failure
 */
-int print_hex(va_list args) {
+int print_hex(va_list args, buffer_t *buf) {
 	unsigned int n;
-	char *str;
-	ssize_t bytes_written;
+	char str[BUFFER_SIZE];
+	int i = 0;
 
 	n = va_arg(args, unsigned int);
-	str = malloc(12);
-	if (!str) return -1;
 	to_hex(n, str);
-	bytes_written = write(1, str, _strlen(str));
-	if (!bytes_written) {
-		free(str);
-		return -1;
+	while (str[i]) {
+		buf->buffer[buf->index++] = str[i++];
+		buf->count++;
+
+		if (buf->index == 1024) {
+			write(1, buf->buffer, buf->index);
+			buf->index = 0;
+		}
 	}
-	free(str);
-	return bytes_written;
+	return i;
+	
 }
