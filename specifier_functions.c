@@ -11,21 +11,27 @@
  *
  * Return: The number of characters printed on success, -1 on failure
 */
-int print_int(va_list args) {
+int print_int(va_list args, buffer_t *buf) {
 	/* handles conversion specifier d and i*/
-	int num;
-	char *res;
+	int num, i = 0;
+	char res[BUFFER_SIZE];
 	ssize_t bytes_written;
 
 	num = va_arg(args, int);
-	res = malloc(20);
-	if (res == NULL) {
-		return -1;
-		}
 	_itoa(num, res);
-	bytes_written = write(1, res, _strlen(res));
-	free(res);
-	return (bytes_written == -1) ? -1 : bytes_written;
+
+	while (res[i]) {
+		buf->buffer[buf->index++] = res[i++];
+		buf->count++;
+
+		/* if buffer is full flush it and reset the buffer index*/
+		/* This is to prevent buffer overflow*/
+		if (buf->index == 1024) {
+			write(1, buf->buffer, buf->index);
+			buf->index = 0;
+		}
+	}
+	return i;
 }
 
 /**
@@ -34,12 +40,21 @@ int print_int(va_list args) {
  *
  * Return: The number of characters printed on success, -1 on failure
 */
-int print_char(va_list args) {
+int print_char(va_list args, buffer_t *buf) {
 	char c;
 
 	c = (char) va_arg(args, int);
-	return write(1, &c, 1);
+
+	buf->buffer[buf->index++] = c;
+	buf->count++;
+
+	if (buf->index == 1024) {
+		write(1, buf->buffer, buf->index);
+		buf->index = 0;
 	}
+
+	return 1;
+}
 
 /**
  * print_str - prints a string to the standard output
@@ -47,12 +62,24 @@ int print_char(va_list args) {
  *
  * Return: The number of characters printed on success, -1 on failure
 */
-int print_str(va_list args) {
+int print_str(va_list args, buffer_t *buf) {
 	char *str;
+	int i = 0;
 
 	str = va_arg(args, char *);
 	if (str == NULL) str = "(null)";
-	return write(1, str, _strlen(str));
+
+	while (str[i]) {
+		buf->buffer[buf->index++] = str[i++];
+		buf->count++;
+
+		if (buf->index == 1024) {
+			write(1, buf->buffer, buf->index);
+			buf->index = 0;
+			}
+	}
+
+	return i;
 	}
 
 /**
@@ -61,51 +88,52 @@ int print_str(va_list args) {
  *
  * Return: The number of characters printed on success, -1 on failure
 */
-int print_binary(va_list args) {
+int print_binary(va_list args, buffer_t *buf) {
 	unsigned int num;
-	char *res;
-	size_t length;
-	ssize_t bytes_written;
+	char res[33];
+	int i = 0;
 
 	num = va_arg(args, unsigned int);
-	res = malloc(33);
-	if (res == NULL) {
-		return -1;
-	}
+
 	to_binary(num, res);
-	length = _strlen(res);
-	bytes_written = write(1, res, length);
-	/* In case of write error*/
-	if (bytes_written == -1) {
-		free(res);
-		return -1;
+
+	while (res[i])
+	{
+		buf->buffer[buf->index++] = res[i++];
+		buf->count++;
+
+		if (buf->index == 1024) {
+			write(1, buf->buffer, buf->index);
+			buf->index = 0;
+		}
+
 	}
-	free(res);
-	return bytes_written;
-	}
+	return i;
+
+}
 /**
  * print_unsigned - prints unsigned integers to the standard output
  * @args: The argument list containing the unsigned integers to print
  *
  * Return: The number of characters printed on success, -1 on failure
 */
-int print_unsigned(va_list args) {
+int print_unsigned(va_list args, buffer_t *buf) {
 	unsigned int num;
-	char *res;
-	size_t length;
-	ssize_t bytes_written;
+	char res[BUFFER_SIZE];
+	int i = 0;
 
 	num = va_arg(args, unsigned int);
-	res = malloc(12);
-	if (!res) return -1;
+
 	_uitoa(num, res);
-	length = _strlen(res);
-	bytes_written = write(1, res, length);
-	/* In case of write error*/
-	if (bytes_written == -1) {
-		free(res);
-		return -1;
+
+	while (res[i]) {
+		buf->buffer[buf->index++] = res[i++];
+		buf->count++;
+
+		if (buf->index == 1024) {
+			write(1, buf->buffer, buf->index);
+			buf->index = 0;
 		}
-	free(res);
-	return bytes_written;
 	}
+	return i;
+}
