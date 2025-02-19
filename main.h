@@ -7,19 +7,27 @@
 #include <stdlib.h>
 #include <limits.h>
 
+#define BUFFER_SIZE 1024
+
+typedef struct buffer_s {
+	char buffer[1024]; /* buffer used to store the characters */
+	int index; /* keeps track of where to write text */
+	int count; /* keeps count of the number of characters written */
+} buffer_t;
+
 typedef struct specifier {
 	char spec;
-	int (*func)(va_list);
+	int (*func)(va_list, buffer_t *);
 } specifier_t;
 
-int print_int(va_list args);
-int print_str(va_list args);
-int print_binary(va_list args);
-int print_char(va_list args);
-int print_unsigned(va_list args);
-int print_octal(va_list args);
-int print_Hex(va_list args);
-int print_hex(va_list args);
+int print_int(va_list args, buffer_t *buf);
+int print_str(va_list args, buffer_t *buf);
+int print_binary(va_list args, buffer_t *buf);
+int print_char(va_list args, buffer_t *buf);
+int print_unsigned(va_list args, buffer_t *buf);
+int print_octal(va_list args, buffer_t *buf);
+int print_Hex(va_list args, buffer_t *buf);
+int print_hex(va_list args, buffer_t *buf);
 
 specifier_t *get_specifiers(void);
 
