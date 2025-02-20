@@ -14,6 +14,8 @@ void to_Hex(unsigned int n, char *s) {
 
 	if (n == 0) {
 		s[i++] = '0';
+		s[i++] = '0';
+
 	} else {
 		while(n != 0) {
 			rem = n % 16;
@@ -24,6 +26,9 @@ void to_Hex(unsigned int n, char *s) {
 					}
 					n /= 16;
 		}
+	}
+	if (i == 1) {
+		s[i++] = '0';
 	}
 	s[i] = '\0';
 	reverse(s);
