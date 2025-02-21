@@ -40,6 +40,7 @@ int main(void)
 	_printf("100%% accurate, 50%% effort!\n");
 	_printf("%% Start and End %%\n");
 	_printf("%b\n", 98);
+	_printf("%S\n", "Best\nSchool");
 
     return (0);
 }
