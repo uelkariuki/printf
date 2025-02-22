@@ -10,6 +10,7 @@ specifier_t specifiers[] = {
 	{'o', print_octal},
 	{'X', print_Hex},
 	{'x', print_hex},
+	{'S', print_String},
 	{'\0', NULL}
 	};
 
