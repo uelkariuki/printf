@@ -28,6 +28,7 @@ int print_unsigned(va_list args, buffer_t *buf);
 int print_octal(va_list args, buffer_t *buf);
 int print_Hex(va_list args, buffer_t *buf);
 int print_hex(va_list args, buffer_t *buf);
+int print_String(va_list args, buffer_t *buf);
 
 specifier_t *get_specifiers(void);
 
@@ -40,6 +41,7 @@ void _uitoa(unsigned int num, char s[]);
 void to_octal(unsigned int k, char *s);
 void to_Hex(unsigned int n, char *s);
 void to_hex(unsigned int n, char *s);
+int str_to_ASCII(char *str, buffer_t *buf);
 
 #endif
 
